@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
 
-		List<Usuario> users = this.userService.list();
+		/*List<Usuario> users = this.userService.list();
 
 		for (int i = 0; i < users.size(); i++) {
 			Usuario usuario = new Usuario();
@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("admin/dashboard/index.jsp");
 				break;
 			}
-		}
+		}*/
 		if (email.equals("bruno@gmail.com") && pass.equals("123")) {
 
 			RequestDispatcher rd = request.getRequestDispatcher("admin/dashboard/index.jsp");

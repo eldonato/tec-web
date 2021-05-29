@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 
 <mt:admin_template>
-	
+
 	<jsp:attribute name="content">
 		
 		<div class="container-fluid">
@@ -15,7 +16,8 @@
    				</c:if>
             </div>
             
-            <div class="table table-responsive table-striped table-hover">
+            <div
+					class="table table-responsive table-striped table-hover">
                     <table class="table">
                       <thead class=" text-primary">
                        	  <th scope="col">ID</th>
@@ -30,17 +32,13 @@
                         		<td><c:out value="${contato.id}"></c:out></td>
                         		<td><c:out value="${contato.nome}"></c:out></td>
                         		<td><c:out value="${contato.email}"></c:out></td>
-                        		
-                        		
+                        		                        	
                         		<td>
-                        			<a class="btn btn-danger" 
-                        					href="${pageContext.request.contextPath}/contatosServlet?id=${contato.id}&acao=remover">
-                        					<c:out value="Remover"/>
+                        			<a class="btn btn-danger"
+										href="${pageContext.request.contextPath}/contatosServlet?id=${contato.id}&acao=remover">
+                        					<c:out value="Remover" />
                         			</a>
                         		</td>
-                        		
-                        		
-                        		
                         		<td>Editar</td>
                         	</tr>
                    
@@ -53,5 +51,5 @@
           </div>
         		
 	</jsp:attribute>
-		
+
 </mt:admin_template>

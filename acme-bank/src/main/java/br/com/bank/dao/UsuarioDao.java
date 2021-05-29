@@ -14,5 +14,5 @@ public interface UsuarioDao {
 	public void deleteById(Long idUsuario);
 	
 	public void edit(Usuario usuario);
-
+	
 }

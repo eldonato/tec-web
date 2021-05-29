@@ -8,7 +8,7 @@
 		</description>
 		<display-name>ContatoServlet</display-name>
 		<servlet-name>ContatoServlet</servlet-name>
-		<servlet-class>br.com.bank.controller.ContatoServlet</servlet-class>
+		<servlet-class>br.com.bank.controller.ContatosServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
