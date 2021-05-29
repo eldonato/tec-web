@@ -13,21 +13,26 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+@WebFilter("/*")
+public class LoginFilter implements Filter {
 
-//@WebFilter("/*")
-public class AdminFilter implements Filter {
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		// TODO Auto-generated method stub
 
-	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-			
+	}
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		System.out.println("Passando pelo filtro de acesso....");
 		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession(false);
 		
-		boolean taLogado = (session != null && session.getAttribute("admin") != null);
+		boolean taLogado = (session != null && session.getAttribute("email") != null);
 		
-		String urlLogin = httpRequest.getContextPath() + "loginServlet";
+		String urlLogin = httpRequest.getContextPath() + "/LoginServlet";
 		
 		
 		boolean ehRequestLogin = httpRequest.getRequestURI().equals(urlLogin);
@@ -51,12 +56,11 @@ public class AdminFilter implements Filter {
 	}
 
 	
-	public void init(FilterConfig fConfig) throws ServletException {
-		System.out.println("Iniciando o meu filtro aqui ....");
-	}
-	
+
+	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
+
 	}
 
 }

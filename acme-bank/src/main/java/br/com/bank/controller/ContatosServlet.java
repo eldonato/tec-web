@@ -18,51 +18,90 @@ import br.com.bank.service.ContatoServiceImpl;
 @WebServlet("/contatosServlet")
 public class ContatosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	
+
 	private Contato contato;
 	private ContatoServiceImpl service;
-	
+
 	public ContatosServlet() {
 		this.service = new ContatoServiceImpl();
 		this.contato = new Contato();
 	}
-   
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String acao = request.getParameter("acao");
-		
+
 		switch (acao) {
 		
-		case "remover":
-			// processar a remoção do contato
-			String id = request.getParameter("id");
-			System.out.println(id);
-			// criar o metodo de remocão no dao, e no service
-			// chamar o service aqui, passando o id (da request) como parametro para executar a remoção do contato
-			
-		case "editar":
-			
 		case "listar":
-			RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/contatos/list_contatos.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("admin/pages/contatos/list_contatos.jsp");
 			request.setAttribute("contatos", this.service.list());
+			request.setAttribute("sucesso", "SUCESSO!");
 			rd.forward(request, response);
+			break;
+			
+		case "remover":
+			String id = request.getParameter("id");
+			this.service.remover(Long.parseLong(id));
+			RequestDispatcher rd1 = request.getRequestDispatcher("/ContatosServlet?acao=listar");
+			request.setAttribute("remover", "Contato removido com sucesso");
+			rd1.forward(request, response);
+			break;
+
+		case "getContatoById":
+			String getId = request.getParameter("id");
+			this.service.remover(Long.parseLong(getId));
+			RequestDispatcher rd2 = request.getRequestDispatcher("/ContatosServlet?acao=listar");
+			request.setAttribute("remover", "Contato removido com sucesso");
+			rd2.forward(request, response);
+			break;
+			
 		}
-		
-		
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String acao = request.getParameter("acao");
+
+		switch (acao) {
+		
+		case "listar":
+			RequestDispatcher rd4 = request.getRequestDispatcher("admin/pages/contatos/list_contatos.jsp");
+			request.setAttribute("contatos", this.service.list());
+			request.setAttribute("sucesso", "SUCESSO!");
+			rd4.forward(request, response);
+			break;
 			
+		case "salvar":
 			this.contato = new Contato();
 			this.contato.setNome(request.getParameter("nome"));
 			this.contato.setEmail(request.getParameter("email"));
-			
+
 			this.service.salvar(contato);
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/contatos/list_contatos.jsp");
-			request.setAttribute("sucesso", "Contato "+ contato.getNome() +"salvo com sucesso");
+			request.setAttribute("sucesso", "Contato " + contato.getNome() + "salvo com sucesso");
 			request.setAttribute("contatos", this.service.list());
 			rd.forward(request, response);
-	}
 
+		case "editar":
+			long id = Long.parseLong(request.getParameter("id"));
+
+			this.contato = this.service.getContatoById(id);
+			this.contato.setNome(request.getParameter("nome"));
+			this.contato.setEmail(request.getParameter("email"));
+
+			this.service.editar(contato);
+
+			RequestDispatcher rd1 = request.getRequestDispatcher("/admin/pages/contatos/list_contatos.jsp");
+			request.setAttribute("sucesso", "Contato " + contato.getNome() + " editada com sucesso.");
+			request.setAttribute("contatos", this.service.list());
+			rd1.forward(request, response);
+			break;
+
+		default:
+			break;
+		}
+	}
 }
