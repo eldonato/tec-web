@@ -34,4 +34,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 		
 	}
 
+	@Override
+	public Usuario getById(Long id) {
+		return this.getById(id);
+	}
+
 }

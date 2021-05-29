@@ -15,5 +15,6 @@ public interface UsuarioService {
 	public void deleteById(Long idUsuario);
 	
 	public void edit(Usuario usuario);
-
+	
+	public Usuario getById(Long id);
 }

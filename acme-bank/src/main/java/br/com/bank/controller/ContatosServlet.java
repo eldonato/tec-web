@@ -100,8 +100,8 @@ public class ContatosServlet extends HttpServlet {
 			rd1.forward(request, response);
 			break;
 
-		/*default:
-			break;*/
+		default:
+			break;
 		}
 	}
 }

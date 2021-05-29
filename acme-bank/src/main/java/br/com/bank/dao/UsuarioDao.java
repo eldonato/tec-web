@@ -15,4 +15,5 @@ public interface UsuarioDao {
 	
 	public void edit(Usuario usuario);
 	
+	public Usuario getById(Long id);
 }

@@ -40,14 +40,21 @@ public class UsuarioServlet extends HttpServlet {
 			
 		case "editar":
 			
-			
+			long id1 = Long.parseLong(request.getParameter("id"));
+
+			this.usuario = this.service.getById(id1);
+			this.usuario.setNome(request.getParameter("nome"));
+			this.usuario.setEmail(request.getParameter("email"));
+
+			this.service.edit(usuario);
+
+			RequestDispatcher rd1 = request.getRequestDispatcher("/admin/pages/contatos/list_contatos.jsp");
+			request.setAttribute("sucesso", "Contato " + usuario.getNome() + " editada com sucesso.");
+			request.setAttribute("contatos", this.service.list());
+			rd1.forward(request, response);
+			break;
 		
-		
-		
-		}
-		
-		
-		
+		}	
 		
 	}
 
