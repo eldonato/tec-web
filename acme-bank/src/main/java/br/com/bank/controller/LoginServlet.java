@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.bank.model.Usuario;
 import br.com.bank.service.UsuarioService;
@@ -33,7 +34,8 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		HttpSession session = request.getSession();
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
 
@@ -50,6 +52,7 @@ public class LoginServlet extends HttpServlet {
 		}*/
 		if (email.equals("bruno@gmail.com") && pass.equals("123")) {
 
+			session.setAttribute("email", email);
 			RequestDispatcher rd = request.getRequestDispatcher("admin/dashboard/index.jsp");
 			request.setAttribute("user", email);
 			rd.forward(request, response);
