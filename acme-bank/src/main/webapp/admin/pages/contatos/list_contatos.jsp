@@ -8,16 +8,40 @@
 
 	<jsp:attribute name="content">
 		
-		<div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-   				<c:if test="${not empty sucesso}">
-   					<div class="alert alert-success">${sucesso}</div>
-   				</c:if>
-            </div>
-            
-            <div
-					class="table table-responsive table-striped table-hover">
+		<div class="container-fluid"></div>
+			<div class="content">
+				<div class="container-fluid">
+		          <div class="row">
+		          	<div class="card">
+		          		<div class="card-header card-header-primary">
+		                  <h4 class="card-title">Contatos</h4>
+		                </div>
+	          		</div>	          	
+	            <div class="col-md-12">
+	              <c:if test="${not empty sucesso}">
+	              	<div class="alert alert-success">
+	              		${sucesso}
+	              	</div>
+	              </c:if>
+	            </div>	            
+	            <div class="col-md-12">
+	              <c:if test="${not empty remover}">
+	              	<div class="alert alert-success">
+	              		${remover}
+	              	</div>
+	              </c:if>
+	           </div>
+	        </div>
+	     <div>
+	            	<a
+						href="${pageContext.request.contextPath}/admin/pages/contatos/add_contatos.jsp">
+	            		<button class="btn btn-primary pull-left">
+	            			<i class="material-icons">person_add</i>
+	            			Novo
+	            		</button>
+	            	</a>
+	            </div>
+					 <div class="table-responsive table-striped table-hover">
                     <table class="table">
                       <thead class=" text-primary">
                        	  <th scope="col">ID</th>
@@ -35,7 +59,7 @@
                         		                        	
                         		<td>
                         			<a class="btn btn-danger"
-										href="${pageContext.request.contextPath}/contatosServlet?id=${contato.id}&acao=remover">
+									href="${pageContext.request.contextPath}/contatosServlet?id=${contato.id}&acao=remover">
                         					<c:out value="Remover" />
                         			</a>
                         		</td>
@@ -50,6 +74,7 @@
             
           </div>
         		
+	
 	</jsp:attribute>
 
 </mt:admin_template>

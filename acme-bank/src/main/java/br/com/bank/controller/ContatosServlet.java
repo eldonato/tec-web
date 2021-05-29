@@ -35,8 +35,9 @@ public class ContatosServlet extends HttpServlet {
 		switch (acao) {
 		
 		case "listar":
-			RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/contatos/list_contatos.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("admin/pages/contatos/list_contatos.jsp");
 			request.setAttribute("contatos", this.service.list());
+			request.setAttribute("sucesso", "SUCESSO!");
 			rd.forward(request, response);
 			break;
 			
@@ -57,7 +58,6 @@ public class ContatosServlet extends HttpServlet {
 			break;
 			
 		}
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -66,6 +66,14 @@ public class ContatosServlet extends HttpServlet {
 		String acao = request.getParameter("acao");
 
 		switch (acao) {
+		
+		case "listar":
+			RequestDispatcher rd4 = request.getRequestDispatcher("admin/pages/contatos/list_contatos.jsp");
+			request.setAttribute("contatos", this.service.list());
+			request.setAttribute("sucesso", "SUCESSO!");
+			rd4.forward(request, response);
+			break;
+			
 		case "salvar":
 			this.contato = new Contato();
 			this.contato.setNome(request.getParameter("nome"));
@@ -92,8 +100,8 @@ public class ContatosServlet extends HttpServlet {
 			rd1.forward(request, response);
 			break;
 
-		default:
-			break;
+		/*default:
+			break;*/
 		}
 	}
 }

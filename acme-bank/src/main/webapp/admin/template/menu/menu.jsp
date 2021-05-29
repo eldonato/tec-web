@@ -20,7 +20,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="${pageContext.request.contextPath}/ContatosServlet?acao=listar">
+            <a class="nav-link" href="${pageContext.request.contextPath}/admin/pages/contatos/list_contatos.jsp">
               <i class="material-icons">person</i>
               <p>Contatos</p>
             </a>
