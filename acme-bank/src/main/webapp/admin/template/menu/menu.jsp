@@ -14,7 +14,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="${pageContext.request.contextPath}/UsuariosServlet?acao=listar">
+            <a class="nav-link" href="${pageContext.request.contextPath}/admin/pages/usuarios/lista_usuarios.jsp">
               <i class="material-icons">person</i>
               <p>Usuarios</p>
             </a>
