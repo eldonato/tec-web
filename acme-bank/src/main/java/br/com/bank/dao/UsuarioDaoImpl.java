@@ -73,4 +73,21 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		}
 	}
 
+	@Override
+	public Usuario getById(Long id) {
+		
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		try {
+			
+			Usuario usuario = entityManager.find(Usuario.class, id);
+			return usuario;
+			
+		} catch (Exception e) {
+			e.getMessage();
+			entityManager.close();
+		}
+		return null;
+	}
 }

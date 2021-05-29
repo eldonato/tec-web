@@ -30,4 +30,19 @@ public class ContatoServiceImpl implements ContatoService {
 		return this.dao.list();
 	}
 
+	@Override
+	public void editar(Contato contato) {
+		this.dao.editar(contato);
+		
+	}
+
+	@Override
+	public void remover(Long id) {
+		this.dao.remover(id);		
+	}
+
+	@Override
+	public Contato getContatoById(Long id) {
+		return this.dao.getContatoById(id);
+	}	
 }
